@@ -3,8 +3,8 @@ import re
 import requests
 # import alpaca_trade_api as tradeapi
 # base_url = 'https://paper-api.alpaca.markets'
-# api_key_id = 'PK82SGIMO3NE8LBCE4P4'
-# api_secret = 'bZcC4lWvDmnXmaekDudR99dHCnEYp0tBcZVNXZzi'
+# api_key_id = '****'
+# api_secret = '****'
 
 # api = tradeapi.REST(
 #     key_id=api_key_id,
@@ -19,8 +19,8 @@ import requests
 # print(account)
 
 
-# payload = {'APCA-API-KEY-ID': 'PK82SGIMO3NE8LBCE4P4',
-#            'APCA-API-SECRET-KEY': 'bZcC4lWvDmnXmaekDudR99dHCnEYp0tBcZVNXZzi'}
+# payload = {'APCA-API-KEY-ID': '***',
+#            'APCA-API-SECRET-KEY': '***'}
 
 
 # print(payload)
@@ -29,8 +29,8 @@ import requests
 base_url = 'https://paper-api.alpaca.markets'
 account_url = '{}/v2/account'.format(base_url)
 print(account_url)
-r = requests.get(url=account_url, headers={'APCA-API-KEY-ID': 'PK82SGIMO3NE8LBCE4P4',
-                 'APCA-API-SECRET-KEY': 'bZcC4lWvDmnXmaekDudR99dHCnEYp0tBcZVNXZzi'})
+r = requests.get(url=account_url, headers={'APCA-API-KEY-ID': '***',
+                 'APCA-API-SECRET-KEY': '***'})
 data = r.json()
 print(data)
 
