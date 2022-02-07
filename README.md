@@ -14,5 +14,3 @@ Pending Things :
 4. Scale up the app in cloud .
 5. Generate a lot of revenue.
 
-Final Achivement:
-1.Work on this fulltime
