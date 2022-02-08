@@ -13,4 +13,4 @@ Pending Things :
 3. Create the pod version of the applciation.
 4. Scale up the app in cloud .
 5. Generate a lot of revenue.
-
+6. Use that for a good cause.
