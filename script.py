@@ -12,8 +12,11 @@ def greet(who_to_greet):
     return greeting
 
 
+
+
 print(greet("world"))
 print(greet("Corey"))
+print(greet("Ramu"))
 # tradeapi.REST.add_to_watchlist
 
 
