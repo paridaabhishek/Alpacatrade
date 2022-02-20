@@ -41,10 +41,12 @@ if __name__ == "__main__":
         )
         # ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
 
-        thread_stock = threading.Thread(target=ws_stock.run_forever())
-        thread_crypto = threading.Thread(target=ws_crypto.run_forever())
+        thread_stock = threading.Thread(target=ws_stock.run_forever)
+        thread_crypto = threading.Thread(target=ws_crypto.run_forever)
 
+        print("Starting Stock Thread")
         thread_stock.start()
+        print("Starting Crypto Thread")
         thread_crypto.start()
 
         thread_stock.join()

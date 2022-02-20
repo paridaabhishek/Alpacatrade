@@ -1,5 +1,6 @@
 #################This need to be modified#######################
 base_bath = r"C:\Users\abhis\DATA\Alpeca"
+base_url = "https://paper-api.alpaca.markets"  # Chnage it to live for real trading
 
 
 #################This will remain constant###########################

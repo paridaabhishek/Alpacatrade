@@ -1,8 +1,11 @@
 import ast
 import json
 from datetime import datetime
+import datetime as dtm
+import pandas as pd
 from os import path
 import os
+import alpaca_trade_api as tradeapi
 
 
 #######################import required functions#######################
@@ -25,6 +28,31 @@ def get_crypto(crypto_file):
 
 
 # print(get_stocks(stock_file))
+
+
+def trading_window():
+    creds = get_credentails(cred_file)
+    api = tradeapi.REST(
+        key_id=get_credentails(cred_file)["API_KEY"],
+        secret_key=get_credentails(cred_file)["SECRET_KEY"],
+        base_url=base_url,
+    )
+
+    caln = api.get_calendar(start=dtm.date.today(), end=dtm.date.today())
+    date = caln[0].date
+    open = caln[0].open
+    close = caln[0].close
+
+    trading_start = dtm.datetime.combine(
+        dtm.date(date.year, date.month, date.day), dtm.time(open.hour, open.minute)
+    ) + dtm.timedelta(hours=-1)
+
+    trading_end = dtm.datetime.combine(
+        dtm.date(date.year, date.month, date.day), dtm.time(close.hour, close.minute)
+    ) + dtm.timedelta(hours=-1)
+
+    # print(dtm.datetime.now() > trading_start and dtm.datetime.now() < trading_end)
+    return dtm.datetime.now() > trading_start and dtm.datetime.now() < trading_end
 
 
 #####################Web Socket Functions###########################################
@@ -113,12 +141,12 @@ def on_ope_fun_stock(ws):
         "key": get_credentails(cred_file)["API_KEY"],
         "secret": get_credentails(cred_file)["SECRET_KEY"],
     }  # Key and Secret getting from the Cred file.
-    print(auth_data)
+    print("Stock--" + str(auth_data))
     ws.send(json.dumps(auth_data))
 
     ###############Check if some entry in the stock file ################################
     ###And create the listen message for the stock to get the one min tickers############
-    if os.stat(stock_file).st_size != 0:
+    if os.stat(stock_file).st_size != 0 and trading_window():
         print(
             "Stock ----file has some ticker and non zero and will create the starter file"
         )
@@ -132,7 +160,7 @@ def on_ope_fun_stock(ws):
         )
         ws.send(json.dumps(json.loads(listen_message_stock)))
     else:
-        print("stock ---Stock file is empty")
+        print("stock ---Stock file is empty or outside trading window")
         # ws.close()
 
 
@@ -165,7 +193,7 @@ def on_ope_fun_crypto(ws):
         "key": get_credentails(cred_file)["API_KEY"],
         "secret": get_credentails(cred_file)["SECRET_KEY"],
     }  # Key and Secret getting from the Cred file.
-    print(auth_data)
+    print("Crypto --" + str(auth_data))
     ws.send(json.dumps(auth_data))
 
     ###############Check if some entry in the stock file ################################
