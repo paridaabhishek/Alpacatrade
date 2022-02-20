@@ -14,3 +14,6 @@ Pending Things :
 4. Scale up the app in cloud .
 5. Generate a lot of revenue.
 6. Use that for a good cause.
+
+02/20/2022:
+1. Created 2 directory strectures . One for all the poc and is research. here all the adhoc codes are stored . The other one user_selected_assets is the actual code. As of now I am able to get the stream data from all the interested stoks and crypto in a proper way with all thread open and close logic. By end of this month the 9-21 EMA 5 mins logic is planned to move to run live on the paper money. By that time also we will have the basic data collection for sunya api will be ready.
