@@ -33,22 +33,22 @@ if __name__ == "__main__":
         # print(stock_socket)
         # print(crypto_socket)
         ws_crypto = websocket.WebSocketApp(
-            crypto_socket, on_open=on_ope_fun, on_message=on_msg_fun
+            crypto_socket, on_open=on_ope_fun_crypto, on_message=on_msg_fun_crypto
         )
 
         ws_stock = websocket.WebSocketApp(
-            stock_socket, on_open=on_ope_fun, on_message=on_msg_fun
+            stock_socket, on_open=on_ope_fun_stock, on_message=on_msg_fun_stock
         )
         # ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
 
-        thread_crypto = threading.Thread(target=ws_crypto.run_forever())
         thread_stock = threading.Thread(target=ws_stock.run_forever())
+        thread_crypto = threading.Thread(target=ws_crypto.run_forever())
 
-        thread_crypto.start()
         thread_stock.start()
+        thread_crypto.start()
 
-        thread_crypto.join()
         thread_stock.join()
+        thread_crypto.join()
 
         print("The data collection process ended !!!")
 
