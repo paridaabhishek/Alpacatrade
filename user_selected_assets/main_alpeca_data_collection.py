@@ -43,6 +43,7 @@ if __name__ == "__main__":
 
         thread_crypto = threading.Thread(target=ws_crypto.run_forever())
         thread_stock = threading.Thread(target=ws_stock.run_forever())
+
         thread_crypto.start()
         thread_stock.start()
 
