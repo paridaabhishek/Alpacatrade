@@ -7,7 +7,6 @@ from os import path
 import os
 import alpaca_trade_api as tradeapi
 
-
 #######################import required functions#######################
 from paths import *
 
@@ -53,6 +52,11 @@ def trading_window():
 
     # print(dtm.datetime.now() > trading_start and dtm.datetime.now() < trading_end)
     return dtm.datetime.now() > trading_start and dtm.datetime.now() < trading_end
+
+
+def move_to_archive(stream_file, stream_archive_file):
+    os.rename(crypto_stream_file, crypto_stream_archive_file)
+    print("Crypto--streaming file archived")
 
 
 #####################Web Socket Functions###########################################
@@ -224,7 +228,58 @@ def on_msg_fun_crypto(ws, message):
         print("Crypto messgae received at" + current_time)
         print(message)
         print("Crypto --Strated wring to the steam file")
+        stream_crypto(message)  ## Stream the websocket to the data file.
+
         print("Crypto --Wrttin  steam file")
     else:
+        print("Moving the stream file to the backup location with time stamp")
+        move_to_archive(crypto_stream_file, crypto_stream_archive_file)
         print("Crypto ---Colosing the webscoket for stocks file deleted BYEE!!!!")
+
         ws.close()
+
+
+def stream_crypto(message):
+    # print("Streaming Crypto")
+    # messageJson = json.loads(message)
+    # df_crypto = pd.DataFrame(messageJson)
+    print("Printing dataframe")
+    # print(df)
+    if not (path.exists(crypto_stream_file)):
+        print("Crypro ---cryptostream.csv will be crated as it does not exits!!")
+        columns = [
+            "Message Type",
+            "Symbol",
+            "Exchange",
+            "Open",
+            "Close",
+            "High",
+            "Low",
+            "Volume",
+            "TimeStamp",
+            "n",
+            "vw",
+        ]
+        df_crypto_empty = pd.DataFrame(columns=columns)
+        print(df_crypto_empty)
+        df_crypto_empty.to_csv(crypto_stream_file, index=False, header=True)
+
+    else:
+        messageJson = json.loads(message)
+        df_crypto = pd.DataFrame(messageJson)
+        print("=============================")
+        print(df_crypto[df_crypto["T"] == "b"])
+        print("=============================")
+        df_crypto[df_crypto["T"] == "b"].to_csv(
+            crypto_stream_file, mode="a", index=False, header=False
+        )
+
+        # read the stream file . Then get the last 500 records and rewrite to the same CSV.
+        # this is to make sure the file conntains the latest 500 recors.
+        pd.read_csv(crypto_stream_file, index_col=None).iloc[-500:].to_csv(
+            crypto_stream_file, index=False, header=True
+        )
+
+
+def stream_stock(message):
+    print("Streaming stock")
