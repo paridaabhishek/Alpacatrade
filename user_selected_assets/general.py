@@ -229,6 +229,7 @@ def on_msg_fun_crypto(ws, message):
         print(message)
         print("Crypto --Strated wring to the steam file")
         stream_crypto(message)  ## Stream the websocket to the data file.
+        stage_crypto()
 
         print("Crypto --Wrttin  steam file")
     else:
@@ -274,12 +275,19 @@ def stream_crypto(message):
             crypto_stream_file, mode="a", index=False, header=False
         )
 
-        # read the stream file . Then get the last 500 records and rewrite to the same CSV.
-        # this is to make sure the file conntains the latest 500 recors.
-        pd.read_csv(crypto_stream_file, index_col=None).iloc[-500:].to_csv(
+        # read the stream file . Then get the last 1313 records and rewrite to the same CSV.
+        # this is to make sure the file conntains the latest 1313 recors.
+        pd.read_csv(crypto_stream_file, index_col=None).iloc[-1313:].to_csv(
             crypto_stream_file, index=False, header=True
         )
 
 
 def stream_stock(message):
     print("Streaming stock")
+
+
+# as and when new business logic arrives ,the source data colums will be added here
+# this prossed data will be used to carry out transactions latter to generate the profit
+# v1
+def stage_crypto():
+    print("Crypto-- This is to generate the 1,5,15 mins signals")
