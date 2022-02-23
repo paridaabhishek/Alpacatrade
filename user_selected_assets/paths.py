@@ -18,6 +18,10 @@ crypto_stream_file = base_bath + r"\stream\cryptostream.csv"
 stock_stream_file = base_bath + r"\stream\stockstream.csv"
 
 
+staged_path = base_bath + r"\staged"
+staged_path_archive = base_bath + r"\staged\Archive"
+
+
 crypto_stream_archive_file = (
     base_bath
     + r"\stream\Archive\cryptostream_"

@@ -1,6 +1,8 @@
 import ast
+from email import header
 import json
 from datetime import datetime
+from operator import index
 from os import path
 import os
 from wave import Wave_write
@@ -9,6 +11,7 @@ from paths import *
 import pytz
 from datetime import datetime
 from datetime import timedelta
+import pandas as pd
 
 #######################import required functions#######################
 
@@ -103,6 +106,10 @@ def staged_crypto():
             streamed_df_1mins_bar["Close"].ewm(span=21, adjust=True).mean()
         )
 
+        streamed_df_1mins_bar.to_csv(
+            staged_path + r"/" + ticker + "1Min.csv", index=True, header=True
+        )
+
         # print("---------1mins dataframe-------->>>")
         # # print(streamd_df_cbse_unique_1min)
         # print(streamed_df_1mins_bar)
@@ -135,6 +142,10 @@ def staged_crypto():
         )
         streamed_df_5mins_bar["21EMAClosed"] = (
             streamed_df_5mins_bar["Close"].ewm(span=21, adjust=True).mean()
+        )
+
+        streamed_df_5mins_bar.to_csv(
+            staged_path + r"/" + ticker + "5Min.csv", index=True, header=True
         )
 
         # print("---------5mins dataframe-------->>>")
@@ -177,6 +188,10 @@ def staged_crypto():
             streamed_df_15mins_bar["Close"].ewm(span=21, adjust=True).mean()
         )
 
+        streamed_df_15mins_bar.to_csv(
+            staged_path + r"/" + ticker + "15Min.csv", index=True, header=True
+        )
+
         # print("---------15mins dataframe-------->>>")
         # print(streamd_df_cbse_unique_15min)
         # print(
@@ -191,4 +206,85 @@ def staged_crypto():
     ######----->15 mins signal creation block ended ###############################
 
 
-staged_crypto()
+# import glob
+# glob.glob('C:\Users\abhis\DATA\Alpeca\staged\.csv')
+
+import glob
+
+staged_path = base_bath + r"\staged"
+staged_path_archive = base_bath + r"\staged\Archive"
+
+# # # def archive_staged_files
+# for name in glob.glob(staged_path + r"\Crypto*.csv"):
+# for name in glob.glob(staged_path + r"\\" + "Crypto" + "*.csv"):
+
+#     print(name)
+# #     print(
+#         staged_path_archive
+#         + name.split("staged")[1].split(".")[0]
+#         + "_"
+#         + str(time.strftime("%Y%m%d_%H_%M"))
+#         + ".csv"
+#     )
+# os.rename(
+#     name,
+#     staged_path_archive
+#     + name.split("staged")[1].split(".")[0]
+#     + "_"
+#     + str(time.strftime("%Y%m%d_%H_%M"))
+#     + ".csv",
+# )
+
+print(staged_path + r"\Crypto" + "*.csv")
+print(staged_path + r"\Crypto*.csv")
+
+
+def archive_staged_file(type):
+    print(
+        type + " --" + " Archiving Staged file as end of the process signal generated"
+    )
+    for name in glob.glob(staged_path + r"\\" + type + "*.csv"):
+
+        # # + ".csv")
+        # print(name)
+        # print(
+        #     staged_path_archive
+        #     + name.split("staged")[1].split(".")[0]
+        #     + "_"
+        #     + str(time.strftime("%Y%m%d_%H_%M"))
+        #     + ".csv"
+        # )
+        os.rename(
+            name,
+            staged_path_archive
+            + name.split("staged")[1].split(".")[0]
+            + "_"
+            + str(time.strftime("%Y%m%d_%H_%M"))
+            + ".csv",
+        )
+
+
+archive_staged_file("Crypto")
+
+
+# crypto_stream_archive_file = (
+#     base_bath
+#     + r"\stream\Archive\cryptostream_"
+#     + str(time.strftime("%Y%m%d_%H_%M"))
+#     + ".csv"
+# )
+
+# stock_stream_archive_file = (
+#     base_bath
+#     + r"\stream\Archive\stockstream_"
+#     + str(time.strftime("%Y%m%d_%H_%M"))
+#     + ".csv"
+# )
+
+
+#     def move_to_archive(stream_file, stream_archive_file):
+#     if path.exists(stream_file):
+#         os.rename(stream_file, stream_archive_file)
+#         print("Cstreaming file archived")
+#     else:
+#         print("Nothing to delere ")
