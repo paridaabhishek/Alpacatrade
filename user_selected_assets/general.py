@@ -13,6 +13,7 @@ import glob
 
 #######################import required functions#######################
 from paths import *
+from transaction import *
 
 
 def get_credentails(config_file):
@@ -359,7 +360,9 @@ def staged_stock():
         )
 
         streamed_df_1mins_bar.to_csv(
-            staged_path + r"/" + "Stock_" + ticker + "1Min.csv", index=True, header=True
+            staged_path + r"/" + "Stock_" + ticker + "_1Min.csv",
+            index=True,
+            header=True,
         )
 
         # print("---------1mins dataframe-------->>>")
@@ -395,7 +398,9 @@ def staged_stock():
         )
 
         streamed_df_5mins_bar.to_csv(
-            staged_path + r"/" + "Stock_" + ticker + "5Min.csv", index=True, header=True
+            staged_path + r"/" + "Stock_" + ticker + "_5Min.csv",
+            index=True,
+            header=True,
         )
 
         # print("---------5mins dataframe-------->>>")
@@ -437,7 +442,7 @@ def staged_stock():
         )
 
         streamed_df_15mins_bar.to_csv(
-            staged_path + r"/" + "Stock_" + ticker + "15Min.csv",
+            staged_path + r"/" + "Stock_" + ticker + "_15Min.csv",
             index=True,
             header=True,
         )
@@ -625,7 +630,7 @@ def staged_crypto():
         )
 
         streamed_df_1mins_bar.to_csv(
-            staged_path + r"/" + "Crypto_" + ticker + "1Min.csv",
+            staged_path + r"/" + "Crypto_" + ticker + "_1Min.csv",
             index=True,
             header=True,
         )
@@ -665,7 +670,7 @@ def staged_crypto():
         )
 
         streamed_df_5mins_bar.to_csv(
-            staged_path + r"/" + "Crypto_" + ticker + "5Min.csv",
+            staged_path + r"/" + "Crypto_" + ticker + "_5Min.csv",
             index=True,
             header=True,
         )
@@ -711,7 +716,7 @@ def staged_crypto():
         )
 
         streamed_df_15mins_bar.to_csv(
-            staged_path + r"/" + "Crypto_" + ticker + "15Min.csv",
+            staged_path + r"/" + "Crypto_" + ticker + "_15Min.csv",
             index=True,
             header=True,
         )

@@ -9,6 +9,7 @@ import pytz
 from datetime import datetime
 from datetime import timedelta
 import ssl
+from transaction import *
 import threading
 
 
@@ -30,8 +31,18 @@ if __name__ == "__main__":
         crypto_in_interest = get_crypto(crypto_file)
         print(crypto_in_interest)
 
-        # print(stock_socket)
-        # print(crypto_socket)
+        # Setup Transaction process
+        tran = str(
+            input(
+                "Do you want to carry out transactions  Y/N(Set N for Signals Only) :  "
+            )
+        ).upper()
+
+        if tran == "Y":
+            set_assets()
+
+        print(stock_socket)
+        print(crypto_socket)
         ws_crypto = websocket.WebSocketApp(
             crypto_socket, on_open=on_ope_fun_crypto, on_message=on_msg_fun_crypto
         )
