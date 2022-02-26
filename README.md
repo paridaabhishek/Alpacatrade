@@ -20,3 +20,6 @@ Pending Things :
 
 02/23/2022:
 1. The data collection part with 1 5 15 mins bars with H L O C and with 9 and 21 EMA is comoplete . Seems all the logics to start , stop , archive to be working fine . Initail data testing for O C H L also matching with trading view for all 1 5 15 min bars . Little more testing needed though . The EMA needs a little more analysis as sometime its not maching for 5 15 mins bars . May be the formula needs to be updated.
+
+02/26/2022:
+The Transaction logic for 921 5 min added and the code is ready for crypto. Next is to code for the same for the stock and run the entire process
