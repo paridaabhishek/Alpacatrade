@@ -230,7 +230,7 @@ def trans_5Min_921EMA_crypto():
                     quantity = alloc_amount / df_staged_5Min.iloc[-1]["Close"]
                     print("Quantity in interest :" + str(quantity))
                     # print(type(df_staged_5Min.index))
-                    if len(df_staged_5Min.index) > 21:
+                    if len(df_staged_5Min.index) > 2:
                         print("Crypto-- Enough datapoint to check for the transaction ")
                         if (
                             (

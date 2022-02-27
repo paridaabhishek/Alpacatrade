@@ -19,7 +19,8 @@ Pending Things :
 1. Created 2 directory strectures . One for all the poc and is research. here all the adhoc codes are stored . The other one user_selected_assets is the actual code. As of now I am able to get the stream data from all the interested stoks and crypto in a proper way with all thread open and close logic. By end of this month the 9-21 EMA 5 mins logic is planned to move to run live on the paper money. By that time also we will have the basic data collection for sunya api will be ready.
 
 02/23/2022:
-1. The data collection part with 1 5 15 mins bars with H L O C and with 9 and 21 EMA is comoplete . Seems all the logics to start , stop , archive to be working fine . Initail data testing for O C H L also matching with trading view for all 1 5 15 min bars . Little more testing needed though . The EMA needs a little more analysis as sometime its not maching for 5 15 mins bars . May be the formula needs to be updated.
+1. The data collection part with 1 5 15 mins bars with H L O C and with 9 and 21 EMA is comoplete . Seems all the logics to start , stop , archive to be working fine . Initail data testing for O C H L also matching with trading view for all 1 5 15 min bars . Little more testing needed though . The EMA needs a little more analysis as sometime its not maching for 5 15 mins bars .May be the formula needs to be updated.
 
 02/26/2022:
-The Transaction logic for 921 5 min added and the code is ready for crypto. Next is to code for the same for the stock and run the entire process
+
+1.The Transaction logic for 921 5 min added and the code is ready for crypto. Next is to code for the same for the stock and run the entire process. The goal is to run the 1st version of the code with paper money with most of the features attched.

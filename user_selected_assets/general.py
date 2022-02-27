@@ -377,9 +377,16 @@ def staged_stock():
             streamd_df_unique["5MinReminder"] == 0
         ].index.min() + timedelta(minutes=0)
 
-        print("Start time 5 mins -:" + str(start_time_5mins))
+        end_time_5mins = streamd_df_unique[
+            streamd_df_unique["5MinReminder"] == 4
+        ].index.max() + timedelta(minutes=0)
 
-        streamd_df_unique_5min = streamd_df_unique.loc[start_time_5mins:].copy()
+        print("Start time 5 mins -:" + str(start_time_5mins))
+        print("Start time 5 mins -:" + str(end_time_5mins))
+
+        streamd_df_unique_5min = streamd_df_unique.loc[
+            start_time_5mins:end_time_5mins
+        ].copy()
 
         streamed_df_5mins_bar = (
             streamd_df_unique_5min.groupby(pd.Grouper(freq="5min")).agg(
@@ -419,6 +426,10 @@ def staged_stock():
         ].index.min() + timedelta(
             minutes=0
         )  # first pointer from where the 15 mins bar will start.The timedelta is just a 0 min addition and need to be tested further.
+
+        end_time_15mins = streamd_df_unique[
+            streamd_df_unique["15MinReminder"] == 14
+        ].index.max() + timedelta(minutes=0)
 
         # print("Start time 15 mins -:" + str(start_time_15mins))
 
@@ -512,6 +523,7 @@ def on_msg_fun_crypto(ws, message):
         else:
             stream_crypto(message)  ## Stream the websocket to the data file.
             staged_crypto()
+            trans_5Min_921EMA_crypto()
 
         print("Crypto --Wrttin  steam file")
     else:
@@ -647,10 +659,15 @@ def staged_crypto():
             streamd_df_cbse_unique["5MinReminder"] == 0
         ].index.min() + timedelta(minutes=0)
 
+        end_time_5mins = streamd_df_cbse_unique[
+            streamd_df_cbse_unique["5MinReminder"] == 4
+        ].index.max() + timedelta(minutes=0)
+
         print("Start time 5 mins -:" + str(start_time_5mins))
+        print("End time 5 mins -:" + str(start_time_5mins))
 
         streamd_df_cbse_unique_5min = streamd_df_cbse_unique.loc[
-            start_time_5mins:
+            start_time_5mins:end_time_5mins
         ].copy()
 
         streamed_df_5mins_bar = (
@@ -692,10 +709,14 @@ def staged_crypto():
             minutes=0
         )  # first pointer from where the 15 mins bar will start.The timedelta is just a 0 min addition and need to be tested further.
 
+        end_time_15mins = streamd_df_cbse_unique[
+            streamd_df_cbse_unique["15MinReminder"] == 14
+        ].index.max() + timedelta(minutes=0)
+
         # print("Start time 15 mins -:" + str(start_time_15mins))
 
         streamd_df_cbse_unique_15min = streamd_df_cbse_unique.loc[
-            start_time_15mins:
+            start_time_15mins:end_time_15mins
         ].copy()
 
         streamed_df_15mins_bar = (

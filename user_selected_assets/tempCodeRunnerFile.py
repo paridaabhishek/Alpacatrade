@@ -1,1 +1,1 @@
-print(name)
+The data collection process ended !!!
