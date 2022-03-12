@@ -244,6 +244,8 @@ def on_msg_fun_stock(ws, message):
             print("Stock --Wrttin  steam file")
             staged_stock()
             print("Stock --Staged")
+            if path.exists(trans_starter_file):
+                trans_5Min_921EMA_stock()
 
     else:
         print("Stock ---Colosing the webscoket for stocks file deleted BYEE!!!!")
@@ -522,10 +524,12 @@ def on_msg_fun_crypto(ws, message):
             ws.close()
         else:
             stream_crypto(message)  ## Stream the websocket to the data file.
+            print("Crypto --Wrttin  steam file")
             staged_crypto()
-            trans_5Min_921EMA_crypto()
+            print("Crypto --Staged o the staging file")
+            if path.exists(trans_starter_file):
+                trans_5Min_921EMA_crypto()
 
-        print("Crypto --Wrttin  steam file")
     else:
         print("Crypto ---Colosing the webscoket for Crypto file deleted BYEE!!!!")
         ws.close()
@@ -664,7 +668,7 @@ def staged_crypto():
         ].index.max() + timedelta(minutes=0)
 
         print("Start time 5 mins -:" + str(start_time_5mins))
-        print("End time 5 mins -:" + str(start_time_5mins))
+        print("End time 5 mins -:" + str(end_time_5mins))
 
         streamd_df_cbse_unique_5min = streamd_df_cbse_unique.loc[
             start_time_5mins:end_time_5mins

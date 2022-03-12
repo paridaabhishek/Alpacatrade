@@ -275,7 +275,7 @@ def trans_5Min_921EMA_crypto():
                         else:
                             print("Doing nothing and just wating for the next signal")
     else:
-        print("Archiving Trans ")
+
         archive_trans_file("Crypto")
 
 
@@ -283,16 +283,95 @@ trans_5Min_921EMA_crypto()
 
 
 def trans_5Min_921EMA_stock():
-    print("Trans for 5Min 921EMA started ")
+
     if path.exists(trans_starter_file):
-        print(trans_starter_file)
-        with open(trans_starter_file, "r") as transstart:
+        print(
+            "Stock:The trans starter file exits and ..Trans for 5Min 921EMA started for stock"
+        )
+
+        with open(stock_file, "r") as stockf:
+            stock_tickers = [line.rstrip() for line in stockf]
+            print(stock_tickers)
+
+        with open(asset_file, "r") as transstart:
             asset_info = [line.rstrip() for line in transstart]
             print(asset_info[0])
 
-            asset_alloc_details = json.loads(str(asset_info[1]).replace("'", '"'))
-            for key in asset_alloc_details:
+        asset_alloc_details = json.loads(str(asset_info[1]).replace("'", '"'))
+        for key in asset_alloc_details:
+            if key in stock_tickers:
                 print(key, str(asset_alloc_details[key]))
+                ticker = key
+                alloc_amount = asset_alloc_details[key]
+                for name in glob.glob(staged_path + r"\\*" + key + "_5Min*.csv"):
+                    print(name)
+                    name_1Min = name.replace("_5Min", "_1Min")
+                    print(name_1Min)
+
+                    df_staged_5Min = pd.read_csv(name, index_col="TimeStamp")
+                    df_staged_5Min.index = pd.to_datetime(df_staged_5Min.index)
+
+                    # df_staged_1Min = pd.read_csv(name_1Min, index_col="TimeStamp")
+                    # df_staged_1Min.index = pd.to_datetime(name_1Min.index)
+
+                    quantity = alloc_amount / df_staged_5Min.iloc[-1]["Close"]
+                    print("Stock :Quantity in interest :" + str(quantity))
+                    # print(type(df_staged_5Min.index))
+                    if len(df_staged_5Min.index) > 21:
+                        print("Stock-- Enough datapoint to check for the transaction ")
+                        if (
+                            (
+                                df_staged_5Min.iloc[-1]["9EMAClosed"]
+                                > df_staged_5Min.iloc[-1]["21EMAClosed"]
+                            )
+                            and (
+                                df_staged_5Min.iloc[-2]["9EMAClosed"]
+                                < df_staged_5Min.iloc[-2]["21EMAClosed"]
+                            )
+                            and not if_positions_exists(ticker)
+                        ):
+
+                            print(
+                                "Stock :Buy and get the buying price and store it in a file"
+                            )  # buying while the trend changed from 1 -ve to 2 +ve
+
+                            status = stock_buy(ticker, quantity)
+                            print(status)
+                            log_transaction(ticker)
+
+                            # write the trasns info to the file:
+                            with open(
+                                tarns_path + r"/Stock_" + ticker + "_buy_detail.txt",
+                                "a",
+                            ) as buyfile:
+                                buyfile.write(str(status).split("(")[1].split(")")[0])
+                                buyfile.write("\n")
+
+                        elif (
+                            (
+                                df_staged_5Min.iloc[-2]["9EMAClosed"]
+                                >= df_staged_5Min.iloc[-2]["21EMAClosed"]
+                            )
+                            and (
+                                df_staged_5Min.iloc[-1]["21EMAClosed"]
+                                >= df_staged_5Min.iloc[-1]["9EMAClosed"]
+                            )
+                            and if_positions_exists(ticker)
+                        ):  # if you have the asset and if you are getting .5% profit sell if 9<21 sell or stop transaction on 1 min bars
+                            print(key)
+                            print("Stock:Seling------------------------>>>")
+                            sell = stock_sell(ticker)
+                            print(sell)
+
+                            log_transaction(ticker)
+
+                        else:
+                            print(
+                                "Stock :Doing nothing and just wating for the next signal"
+                            )
+    else:
+
+        archive_trans_file("Stock")
 
 
 # for name in glob.glob(staged_path + r"\\" + type + "*.csv")
