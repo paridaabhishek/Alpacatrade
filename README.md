@@ -26,7 +26,8 @@ Pending Things :
 1.The Transaction logic for 921 5 min added and the code is ready for crypto. Next is to code for the same for the stock and run the entire process. The goal is to run the 1st version of the code with paper money with most of the features attched.
 
 03/12/2022:
-1.Tested the crypto process end-to-end . Its running fine without any failuers for long hours (itested it running for around 12 hours ) . Will carry out more stress testing . 
+
+1.Tested the crypto process end-to-end . Its running fine without any failuers for long hours (itested it running for around 12 hours).Will carry out more stress testing. 
 2.On the data validation front the closed price for cryptos are not matching for some websockets and need to be tested further.Mostly its the closed price of the 1 min bar as sometime the socket is pumping multiple records for the same time stamp. 
 3.The 9 EMA and 21 EMA also not matching while calucating with closed price for 1,5,15 mins and while compared to trading view.Will test further to make it same with trading view.
 
