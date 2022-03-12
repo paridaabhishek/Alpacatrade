@@ -1,6 +1,6 @@
 ## Alpacatrade
 ---------------------------------------------------------------------------------------------
-The main objective of the application is to mature to a state where it can carry out transactions in all trading worlds and dynamically adapt to changes and generate a good profit with limited risk. Then use the profits for the betterment of the society. 
+**The main objective of the application is to mature to a state where it can carry out transactions in all trading worlds and dynamically adapt to changes and generate a good profit with limited risk. Then use the profits for the betterment of the society. **
 
 This repository is in the POC state .The target to productionize the process is by the end of 2022.If anyone wants to join hands, very welcome. Also anyone can use my code for a good purpose.
 ----------------------------------------------------------------------------------------------
