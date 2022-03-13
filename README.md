@@ -47,6 +47,6 @@ Pending Things :
 
 2. tested the ema. The ema for 9 is matching mostly after 30 points with trading view making it difficult to use this. 21 even not matching after even 52 points in 1 min chart ie after 52 minutes still the ema 21 curve is in a process to meet with Trading view. Even for 5 mins chats it will take a lot of data points and hence hours to reach to a point where the actual transaction can takes place. The conclusion for now is , even its a good way to carry out the POC but it seems due to the large time it takes to get the proper data , it does not fit to the requiremnet for now.
 
-3. For noew deciding to go ahead with 5  - 8 - 13 simple moving agerage data 
+3. For now deciding to go ahead with 5  - 8 - 13 simple moving agerage data . The inital step is to make sure that that 5 8 13 simple average data is matching with the trading view . Next will be to carry out the business loigc on this to generate the bot.
 
 
