@@ -49,4 +49,8 @@ Pending Things :
 
 3. For now deciding to go ahead with 5  - 8 - 13 simple moving agerage data . The inital step is to make sure that that 5 8 13 simple average data is matching with the trading view . Next will be to carry out the business loigc on this to generate the bot.
 
+4.Tested the 5 8 13 and 21 smiple moving average values for 1 5 and 15 mins bars and all seems to be perfet at the numeric level (if rounding up to the integer its matching perfectly , tested with large values like bit coinn) . For now i treat it as a success.
+
+<span style="color:blue">some *blue* text</span>.
+
 
