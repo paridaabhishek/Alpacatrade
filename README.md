@@ -53,4 +53,6 @@ Pending Things :
 
 5.For next few days I will check the best rules for 5,8,13,21 and test it with paper money.
 
+NOTE: Pandas TA is a good library to get all the indicators . More research needed.
+
 
