@@ -51,6 +51,6 @@ Pending Things :
 
 4.Tested the 5 8 13 and 21 smiple moving average values for 1 5 and 15 mins bars and all seems to be perfet at the numeric level (if rounding up to the integer its matching perfectly , tested with large values like bit coinn) . For now i treat it as a success.
 
-<span style="color:blue">some *blue* text</span>.
+5.For next few days I will check the best rules for 5,8,13,21 and test it with paper money.
 
 
