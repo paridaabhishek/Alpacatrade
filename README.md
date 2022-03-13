@@ -41,3 +41,6 @@ Pending Things :
 
 3.The 9 EMA and 21 EMA also not matching while calucating with closed price for 1,5,15 mins and while compared to trading view.Will test further to make it same with trading view.
 
+03/13/2022
+
+1. The issue with the closed price for 1 min data is fixed . It as fixed by modifying drop_duplicates(subset=["TimeStamp"], keep=**"last"**) , adding the keep last option.Next is to check the 5 15 mins and also valdiate the 9 21 mins emas.
