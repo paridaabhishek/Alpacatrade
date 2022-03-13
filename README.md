@@ -44,3 +44,9 @@ Pending Things :
 03/13/2022
 
 1. The issue with the closed price for 1 min data is fixed . It as fixed by modifying drop_duplicates(subset=["TimeStamp"], keep=**"last"**) , adding the keep last option.Next is to check the 5 15 mins and also valdiate the 9 21 mins emas.
+
+2. tested the ema. The ema for 9 is matching mostly after 30 points with trading view making it difficult to use this. 21 even not matching after even 52 points in 1 min chart ie after 52 minutes still the ema 21 curve is in a process to meet with Trading view. Even for 5 mins chats it will take a lot of data points and hence hours to reach to a point where the actual transaction can takes place. The conclusion for now is , even its a good way to carry out the POC but it seems due to the large time it takes to get the proper data , it does not fit to the requiremnet for now.
+
+3. For noew deciding to go ahead with 5  - 8 - 13 simple moving agerage data 
+
+
