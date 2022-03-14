@@ -56,3 +56,7 @@ Pending Things :
 NOTE: Pandas TA is a good library to get all the indicators . More research needed.
 
 
+03/14/2022
+
+1.5 8 21 Moving average seems to have some point here . If 21 is going up in a time series and 5 and 8 distance is less than the distance from 21 seems to a good thing to check.Will work on this in next few days and see how things are unfolding.
+
